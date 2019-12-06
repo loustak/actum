@@ -1,0 +1,3 @@
+local lovebind = {}
+
+return lovebind

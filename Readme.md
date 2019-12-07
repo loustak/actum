@@ -1,4 +1,4 @@
-# 🎯 Actum
+# Actum
 A simple and flexible library for event and action handling in lua.
 It comes with bindings for [Löve2D](https://love2d.org/), but feel free to propose yours!
 

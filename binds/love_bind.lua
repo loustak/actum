@@ -1,3 +1,0 @@
-local lovebind = {}
-
-return lovebind

@@ -40,7 +40,7 @@ end
 -- Custom event to handle swipes
 lovebind.swipe = actum:event()
 
-function lovebind:startswipe(x, y, button, istouch)
+function lovebind:startswipe(x, y, button)
   local obj = {}
   obj.startx = x
   obj.starty = y

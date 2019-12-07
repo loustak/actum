@@ -7,6 +7,16 @@ describe('Events', function()
   before_each(function()
     actum:clear()
   end)
+
+  describe('cleared', function()
+
+    it('should have an empty events table', function()
+      actum:event()
+      actum:clear()
+      assert.are.same({}, actum.events)
+    end)
+
+  end)
   
   describe('when registered', function()
 
@@ -59,6 +69,38 @@ describe('Events', function()
       assert.spy(spiedfunc1).was.called()
       assert.spy(spiedfunc2).was.called()
     end)
+
+  end)
+
+end)
+
+describe('Actions', function()
+
+  describe('disabled', function()
+
+    it('should not be called', function()
+      local event = actum:event()
+      local spiedfunc = spy.new(func)
+      local action = event:bind(spiedfunc)
+      action:disable()
+      event:trigger()
+      assert.spy(spiedfunc).was.not_called()
+    end)
+
+  end)
+
+  describe('enabled', function()
+
+    it('should be called', function()
+      local event = actum:event()
+      local spiedfunc = spy.new(func)
+      local action = event:bind(spiedfunc)
+      action:disable()
+      action:enable()
+      event:trigger()
+      assert.spy(spiedfunc).was.called()
+    end)
+
   end)
 
 end)

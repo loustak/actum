@@ -9,17 +9,14 @@ describe('Events', function()
   end)
 
   describe('cleared', function()
-
     it('should have an empty events table', function()
       actum:event()
       actum:clear()
       assert.are.same({}, actum.events)
     end)
-
   end)
   
   describe('when registered', function()
-
     it('should increase the number of entries in the actum.events table', function()
       actum:event()
       assert.are.equal(1, #actum.events)
@@ -38,11 +35,9 @@ describe('Events', function()
       local event2 = actum:event()
       assert.are_not.equals(event1.actions, event2.actions)
     end)
-
   end)
 
   describe('binded', function()
-    
     it('should add an action to the actions table', function()
       local event = actum:event()
       local action = event:bind(func)
@@ -51,11 +46,9 @@ describe('Events', function()
       assert.is_function(action.disable)
       assert.is_function(action.toggle)
     end)
-
   end)
 
   describe('triggered', function()
-
     it('should call all registered functions', function()
       local event = actum:event()
 
@@ -69,7 +62,6 @@ describe('Events', function()
       assert.spy(spiedfunc1).was.called()
       assert.spy(spiedfunc2).was.called()
     end)
-
   end)
 
 end)
@@ -77,7 +69,6 @@ end)
 describe('Actions', function()
 
   describe('disabled', function()
-
     it('should not be called', function()
       local event = actum:event()
       local spiedfunc = spy.new(func)
@@ -86,11 +77,9 @@ describe('Actions', function()
       event:trigger()
       assert.spy(spiedfunc).was.not_called()
     end)
-
   end)
 
   describe('enabled', function()
-
     it('should be called', function()
       local event = actum:event()
       local spiedfunc = spy.new(func)
@@ -100,7 +89,6 @@ describe('Actions', function()
       event:trigger()
       assert.spy(spiedfunc).was.called()
     end)
-
   end)
 
 end)

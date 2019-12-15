@@ -4,7 +4,6 @@ local lovebind = require('../love_bind')
 describe('Love bind', function()
 
   describe('swipe', function()
-    
     it('should depends of the button', function()
       local x, y, button = 0, 0, 1
       lovebind:startswipe(x, y, button)
@@ -41,7 +40,6 @@ describe('Love bind', function()
       lovebind:endswipe(0, 0, 1)
       assert.spy(spyfunc).was_not_called()
     end)
-
   end)
 
 end)

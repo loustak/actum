@@ -56,4 +56,15 @@ function actum:event()
   return event
 end
 
+function actum:clean()
+  for _, event in pairs(self.events) do
+    for _, action in pairs(event.actions) do
+      action = nil
+    end
+    event = nil
+  end
+
+  self.events = nil
+end
+
 return actum

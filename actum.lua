@@ -36,12 +36,20 @@ function actum:newevent()
   function event:bind(func)
     local index = #self.actions + 1
     local action = actum:newaction(func)
+
+    function action:unbind()
+      table.remove(event.actions, index)
+      self = nil
+    end
+
     self.actions[index] = action
     return action
   end
 
   function event:trigger(...)
-    for _, action in pairs(self.actions) do
+    local max = #self.actions
+    for i = 1, max do
+      local action = self.actions[i]
       if action.enabled then action.func(...) end
     end
   end
@@ -57,14 +65,14 @@ function actum:event()
 end
 
 function actum:clean()
-  for _, event in pairs(self.events) do
-    for _, action in pairs(event.actions) do
-      action = nil
+  for _, event in ipairs(self.events) do
+    for _, action in ipairs(event.actions) do
+      action:unbind()
     end
-    event = nil
+    event = {}
   end
 
-  self.events = nil
+  self.events = {}
 end
 
 return actum

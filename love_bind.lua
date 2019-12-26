@@ -18,6 +18,12 @@ function love.mousereleased(...)
   lovebind:endswipe(...)
 end
 
+lovebind.wheelmoved = actum:event()
+
+function love.wheelmoved(...)
+  lovebind.wheelmoved:trigger(...)
+end
+
 lovebind.mousemoved = actum:event()
 
 function love.mousemoved(...)

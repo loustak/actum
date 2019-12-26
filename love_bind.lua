@@ -2,6 +2,7 @@ local actum = require('actum')
 
 local lovebind = {}
 lovebind.swipe = {}
+lovebind.down = {}
 
 -- Mouse events
 lovebind.mousepressed = actum:event()
@@ -30,19 +31,6 @@ function love.mousemoved(...)
   lovebind.mousemoved:trigger(...)
 end
 
--- Keyboard events
-lovebind.keypressed = actum:event()
-
-function love.keypressed(...)
-  lovebind.keypressed:trigger(...)
-end
-
-lovebind.keyreleased = actum:event()
-
-function love.keyreleased(...)
-  lovebind.keyreleased:trigger(...)
-end
-
 -- Custom event to handle swipes
 lovebind.swipe = actum:event()
 
@@ -68,6 +56,19 @@ end
 
 function lovebind:isswaping(button)
   return self.swipe[button] ~= nil
+end
+
+-- Keyboard events
+lovebind.keypressed = actum:event()
+
+function love.keypressed(...)
+  lovebind.keypressed:trigger(...)
+end
+
+lovebind.keyreleased = actum:event()
+
+function love.keyreleased(...)
+  lovebind.keyreleased:trigger(...)
 end
 
 return lovebind
